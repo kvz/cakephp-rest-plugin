@@ -796,7 +796,13 @@ Class RestComponent extends Object {
 			: 'ok';
 
 		$time     = time();
-		$response = compact('data');
+
+		$embed = @$this->_settings['actions'][$this->Controller->action]['embed'];
+		if ($embed !== false) {
+			$response = compact('data');
+		} else {
+			$response = $data;
+		}
 
 		if ($this->_settings['meta']['enable']) {
 			$serverKeys = array_flip($this->_settings['meta']['requestKeys']);
@@ -829,7 +835,7 @@ Class RestComponent extends Object {
 		if (!empty($this->_settings['log']['dump'])) {
 			$dump = array(
 				'data_in' => json_encode($this->postData),
-				'data_out' => json_encode($response['data']),
+				'data_out' => json_encode($data),
 			);
 			if ($this->_settings['meta']['enable']) {
 				$dump['meta'] = json_encode($response['meta']);
