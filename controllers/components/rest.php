@@ -278,10 +278,15 @@ Class RestComponent extends Object {
 	public function beforeRender (&$Controller) {
 		if (!$this->isActive()) return;
 
-		$data = $this->inject(
-			(array)@$this->_settings['actions'][$this->Controller->action]['extract'],
-			$this->Controller->viewVars
-		);
+		$extract = @$this->_settings['actions'][$this->Controller->action]['extract'];
+		if ($extract !== false) {
+			$data = $this->inject(
+				(array) $extract,
+				$this->Controller->viewVars
+			);
+		} else {
+			$data = $this->Controller->viewVars;
+		}
 
 		$response = $this->response($data);
 
