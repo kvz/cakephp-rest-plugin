@@ -143,7 +143,6 @@ Class RestComponent extends Object {
 		// Control Debug
 		$this->_settings['debug'] = (int)$this->_settings['debug'];
 		Configure::write('debug', $this->_settings['debug']);
-		$this->Controller->set('debug', $this->_settings['debug']);
 
 		// Set credentials
 		$this->credentials(true);
