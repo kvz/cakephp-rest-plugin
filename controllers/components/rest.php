@@ -942,7 +942,12 @@ Class RestComponent extends Object {
 		if ($error) {
 			$this->error($error);
 		}
-		$this->Controller->header(sprintf('HTTP/1.1 %s %s', $code, $this->codes[$code]));
+
+		$message = $error;
+		if (!$message && isset($this->codes[$code])) {
+			$message = $this->codes[$code];
+		}
+		$this->Controller->header(sprintf('HTTP/1.1 %s %s', $code, $message));
 
 		$this->headers();
 		$encoded = $this->View()->encode($this->response($data));
