@@ -545,7 +545,7 @@ Class RestComponent extends Object {
 				}
 
 				$this->log(array(
-					'username' => $this->_credentials[$this->_settings['auth']['fields']['username']],
+					'username' => @$this->_credentials[$this->_settings['auth']['fields']['username']],
 					'apikey' => $this->_credentials[$this->_settings['auth']['fields']['apikey']],
 					'class' => $this->_credentials[$this->_settings['auth']['fields']['class']],
 				));

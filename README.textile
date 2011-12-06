@@ -106,11 +106,13 @@ class ServersController extends AppController {
 		'Rest.Rest' => array(
 			'catchredir' => true, // Recommended unless you implement something yourself
 			'debug' => 0,
-			'view' => array(
-				'extract' => array('server.Server' => 'servers.0'),
-			),
-			'index' => array(
-				'extract' => array('rows.{n}.Server' => 'servers'),
+			'actions' => array(
+				'view' => array(
+					'extract' => array('server.Server' => 'servers.0'),
+				),
+				'index' => array(
+					'extract' => array('rows.{n}.Server' => 'servers'),
+				),
 			),
 		),
 	);
@@ -141,8 +143,10 @@ class TweetsController extends AppController {
 	public $components = array (
 		'Rest.Rest' => array(
 			'catchredir' => true,
-			'extract' => array(
-				'index' => array('tweets'),
+			'actions' => array(
+				'extract' => array(
+					'index' => array('tweets'),
+				),
 			),
 		),
 	);
