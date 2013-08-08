@@ -116,6 +116,8 @@ class BluntXml {
 	 * @return string
 	 */
 	protected function _xmlBeautify ($xml) {
+		$xml = mb_convert_encoding($xml, 'UTF-8', 'HTML-ENTITIES');
+		
 		if (!$this->beautify) {
 			return $xml;
 		}
