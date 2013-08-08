@@ -150,7 +150,7 @@ Class RestComponent extends Component {
 		parent::__construct($collection, $settings);
 	}
 
-	public function initialize (&$Controller) {
+	public function initialize (Controller $Controller) {
 		$this->Controller = $Controller;
 
 		if (!$this->isActive()) {
@@ -227,7 +227,7 @@ Class RestComponent extends Component {
 	 *
 	 * @param <type> $Controller
 	 */
-	public function shutdown (&$Controller) {
+	public function shutdown (Controller $Controller) {
 		if (!$this->isActive()) {
 			return;
 		}
@@ -245,7 +245,7 @@ Class RestComponent extends Component {
 	 * @param <type> $Controller
 	 * @return <type>
 	 */
-	public function startup (&$Controller) {
+	public function startup (Controller $Controller) {
 		if (!$this->isActive()) {
 			return;
 		}
@@ -299,7 +299,7 @@ Class RestComponent extends Component {
 	 *
 	 * @return <type>
 	 */
-	public function beforeRender (&$Controller) {
+	public function beforeRender (Controller $Controller) {
 		if (!$this->isActive()) return;
 
 		if (false === ($extract = @$this->settings['actions'][$this->Controller->action]['extract'])) {
@@ -931,7 +931,7 @@ Class RestComponent extends Component {
 		return $this->_View;
 	}
 
-	public function beforeRedirect (&$Controller, $url, $status = null, $exit = true) {
+	public function beforeRedirect (Controller $Controller, $url, $status = null, $exit = true) {
 		if (@$this->settings['catchredir'] === false) {
 			return;
 		}

@@ -123,7 +123,7 @@ class BluntXml {
 		// Indentation
 		$doc = new DOMDocument($this->version);
 		$doc->preserveWhiteSpace = false;
-		if (!$doc->loadXML($xml)) {
+		if (!$doc->loadXML(html_entity_decode($xml))) {
 			trigger_error('Invalid XML: ' . $xml, E_USER_ERROR);
 		}
 		$doc->encoding	 = $this->encoding;
